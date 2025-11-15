@@ -12,19 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// --- VULNERABLE PARAMETERS ---
-$card_id = $_POST['card_id']; // IDOR Flaw
+$card_id = $_POST['card_id'];
 $to_account_id = $_POST['to_account_id'];
 $amount = (float)$_POST['amount'];
 $sender_user_id = $_SESSION['user_id'];
-// ---
 
 $pdo->beginTransaction();
 
 try {
-    // 1. --- IDOR FLAW ---
-    // Bayo just trusts the $card_id from the form. 
-    // He NEVER checks if the logged-in user actually OWNS this card!
     $stmt = $pdo->prepare("SELECT * FROM payment_cards WHERE id = ? AND is_active = TRUE");
     $stmt->execute([$card_id]);
     $payment_card = $stmt->fetch();
@@ -33,7 +28,6 @@ try {
         throw new Exception("Payment card not found or inactive.");
     }
     
-    // 2. Security Check (Flawed): Check that the destination account belongs to the sender
     $stmt = $pdo->prepare("SELECT * FROM accounts WHERE id = ? AND user_id = ? FOR UPDATE");
     $stmt->execute([$to_account_id, $sender_user_id]);
     $recipient_account = $stmt->fetch();
