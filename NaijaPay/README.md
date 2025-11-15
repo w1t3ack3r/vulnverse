@@ -27,11 +27,7 @@ This CTF is designed to be run locally using Docker Compose, guaranteeing a cons
 
 ### Launch Instructions
 
-1.  **Clone the Repository:**
-    ```bash
-    git clone [YOUR REPO URL]
-    cd [YOUR REPO FOLDER]
-    ```
+1.  **Clone the Repository**
 
 2.  **Launch the Stack:** This command builds the PHP image, starts the MySQL database, and creates all necessary networks and volumes. **Note: This will take 30-60 seconds for the database to initialize.**
     ```bash
@@ -39,7 +35,7 @@ This CTF is designed to be run locally using Docker Compose, guaranteeing a cons
     ```
 
 3.  **Access the Application:**
-    * **Web Portal:** Access the application at `http://localhost:8080` (or the port specified in your `docker-compose.yml`).
+    * **Web Portal:** Access the application at `http://localhost:9000` (or the port specified in your `docker-compose.yml`).
     * **Register:** Create a new user account to begin the challenge.
 
 ---
