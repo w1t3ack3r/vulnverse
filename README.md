@@ -35,7 +35,7 @@ Each machine in Vulnverse is:
 ## 👨‍💻 About This Project
 
 **Vulnverse** is built and maintained by **[w1t3ack3r](https://github.com/w1t3ack3r)**, a cybersecurity student and penetration tester 🇳🇬.
-This project started during a 6-month **SIWES** (Industrial Training) program as a personal initiative to improve practical skills and contribute to the cybersecurity learning community.
+This project started during my 6-month **SIWES** (Industrial Training) program as a personal initiative to improve practical skills and contribute to the cybersecurity learning community.
 
 ---
 
