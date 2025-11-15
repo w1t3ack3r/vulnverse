@@ -20,7 +20,7 @@ foreach ($accounts as $account) {
 $placeholders = implode(',', array_fill(0, count($account_ids), '?'));
 $stmt = $pdo->prepare("SELECT id, from_account_id, to_account_id, amount, description, txn_date FROM transactions WHERE from_account_id IN ($placeholders) OR to_account_id IN ($placeholders) ORDER BY txn_date DESC");
 
-// Execute with the account IDs twice (for both WHERE clauses)
+// Execute with the account IDs twice
 $params = array_merge($account_ids, $account_ids);
 $stmt->execute($params);
 $transactions = $stmt->fetchAll();
@@ -28,9 +28,9 @@ $transactions = $stmt->fetchAll();
 // Utility function to determine if the transaction is a DEBIT or CREDIT for the user
 function get_txn_type($txn, $user_account_ids) {
     if (in_array($txn['from_account_id'], $user_account_ids)) {
-        return 'DEBIT'; // Money moved *from* a user account (transfer out)
+        return 'DEBIT';
     }
-    return 'CREDIT'; // Money moved *to* a user account (transfer in or funding)
+    return 'CREDIT';
 }
 ?>
 
