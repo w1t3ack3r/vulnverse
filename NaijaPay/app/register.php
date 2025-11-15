@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$firstname, $lastname, $bvn, $email, $password_hash]);
             $new_user_id = $pdo->lastInsertId();
             
-            // 2. Create their default "Savings" account with 10k NGN
             $stmt = $pdo->prepare("INSERT INTO accounts (user_id, account_name, balance) VALUES (?, 'My Savings', 10000.00)");
             $stmt->execute([$new_user_id]);
 
@@ -37,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($e->getCode() == 23000) {
                 $message = 'This email address is already registered.';
             } else {
-                $message = 'An error occurred: ' . $e->getMessage(); // Better error reporting for us
+                $message = 'An error occurred: ' . $e->getMessage();
             }
         }
     }
