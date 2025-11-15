@@ -6,8 +6,6 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Get the vulnerable firstname.
-// Notice Bayo didn't use htmlspecialchars() here!
 $current_user_name = $_SESSION['user_firstname'] ?? $_SESSION['user_email'];
 
 $message = '';
