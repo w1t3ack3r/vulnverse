@@ -8,9 +8,9 @@ Your mission is to audit the system, starting from zero, and escalate to contain
 
 ### 🎯 Objective Summary
 
-1.  **Gain Initial Access:**
-2.  **Steal Flags:**
-3.  **Financial Domination:**
+1.  **Gain Initial Access**
+2.  **Steal Flags**
+3.  **Financial Domination**
 
 ---
 
