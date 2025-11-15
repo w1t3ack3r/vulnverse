@@ -1,9 +1,8 @@
 <?php
-// Start session and connect to DB *before* any HTML output
 session_start();
 require '../db_connect.php';
 
-// Check if user is logged in (can't be in header.php yet)
+// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../login.php');
     exit;
@@ -11,17 +10,13 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// --- ALL LOGIC MOVED TO THE TOP ---
 // Handle the form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
 
-    // --- THE VULNERABLE FILTER ---
-    // Bayo thinks this is a great way to stop XSS.
     $safe_firstname = str_replace(["<script>", "onclick"], "", $firstname);
     $safe_lastname = str_replace(["<script>", "onclick"], "", $lastname);
-    // --- END VULNERABILITY ---
 
     try {
         $stmt = $pdo->prepare("UPDATE users SET firstname = ?, lastname = ? WHERE id = ?");
@@ -37,15 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['message_type'] = 'error';
     }
     
-    // THIS HEADER CALL NOW WORKS, as no HTML has been sent
     header('Location: profile.php');
     exit;
 }
-// --- END OF LOGIC BLOCK ---
 
 
-// --- START HTML OUTPUT ---
-// Now that all logic is done, we can safely include the header
 require_once 'header.php'; 
 
 // Get current user data to populate the form
@@ -74,5 +65,5 @@ $user = $stmt->fetch();
 </form>
 
 <?php
-require_once 'footer.php'; // Use the footer
+require_once 'footer.php';
 ?>
