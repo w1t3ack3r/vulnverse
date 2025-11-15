@@ -12,21 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// --- VULNERABLE PARAMETERS ---
-$from_account_id = $_POST['from_account_id']; // IDOR Flaw
+$from_account_id = $_POST['from_account_id'];
 $recipient_email = $_POST['recipient_email'];
-$amount = (float)$_POST['amount']; // Negative Amount Flaw
+$amount = (float)$_POST['amount'];
 $memo = $_POST['memo'] ?? 'Transfer';
 $sender_user_id = $_SESSION['user_id'];
-// ---
 
 $pdo->beginTransaction();
 
 try {
-    // --- IDOR FLAW ---
-    // Bayo just trusts the $from_account_id from the form.
-    // He NEVER checks if the logged-in user actually OWNS this account.
-    // This is Bayo's VULNERABLE code:
     $stmt = $pdo->prepare("SELECT * FROM accounts WHERE id = ? FOR UPDATE");
     $stmt->execute([$from_account_id]);
     $sender_account = $stmt->fetch();
@@ -49,19 +43,11 @@ try {
         throw new Exception("Account not found.");
     }
 
-    // --- NEGATIVE AMOUNT FLAW ---
-    // Bayo's "security check"
-    // He checks if the balance is "greater than or equal to" the amount.
-    // If $amount = -5000, this check (10000 >= -5000) passes!
     if ($sender_account['balance'] >= $amount) {
         
-        // 1. Subtract from sender
-        // FLAW: 10000 - (-5000) = 15000
         $stmt = $pdo->prepare("UPDATE accounts SET balance = balance - ? WHERE id = ?");
         $stmt->execute([$amount, $sender_account['id']]);
 
-        // 2. Add to receiver
-        // FLAW: 100000 + (-5000) = 95000
         $stmt = $pdo->prepare("UPDATE accounts SET balance = balance + ? WHERE id = ?");
         $stmt->execute([$amount, $recipient_account['id']]);
         
