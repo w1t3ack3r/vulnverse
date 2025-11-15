@@ -43,7 +43,6 @@ CREATE TABLE IF NOT EXISTS transactions (
 );
 
 -- Pre-seed a "Victim" user (ID 1)
--- Password is 'password'
 INSERT INTO users (id, firstname, lastname, bvn, email, password_hash) VALUES
 (1, 'CEO', 'NaijaPay', '11111111111', 'ceo@naijapay.ng', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
 
@@ -55,6 +54,3 @@ INSERT INTO accounts (user_id, account_name, balance) VALUES
 -- Create a payment card for the CEO (Victim) - ID will be 1
 INSERT INTO payment_cards (user_id, card_nickname, card_last_four) VALUES
 (1, 'CEO Platinum VISA', '9999');
-
--- Note: The attacker (who registers) will be user_id 2
--- Their account will be ID 3, and their card will be ID 2.
