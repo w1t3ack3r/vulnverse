@@ -1,11 +1,10 @@
-/* A sleek, dark/blue/green FinTech theme */
 :root {
     --bg-dark: #0f172a;
     --bg-light: #1e293b;
     --text-light: #e2e8f0;
     --text-muted: #94a3b8;
-    --primary: #22c55e; /* Green */
-    --secondary: #3b82f6; /* Blue */
+    --primary: #22c55e;
+    --secondary: #3b82f6;
     --border: #334155;
 }
 
@@ -60,7 +59,7 @@ main {
     padding: 30px;
 }
 
-/* Auth Pages (Login/Register) */
+
 .auth-page {
     max-width: 450px;
     margin-top: 50px;
@@ -89,7 +88,7 @@ input[type="password"] {
     border-radius: 6px;
     color: var(--text-light);
     font-size: 16px;
-    box-sizing: border-box; /* Fixes width issue */
+    box-sizing: border-box;
 }
 
 input:focus {
@@ -149,7 +148,7 @@ input:focus {
     color: #bbf7d0;
 }
 
-/* Portal Page */
+
 .portal-nav {
     display: flex;
     justify-content: space-between;
@@ -164,7 +163,7 @@ input:focus {
     color: var(--text-light);
 }
 
-/* Transaction Table */
+
 table {
     width: 100%;
     border-collapse: collapse;
