@@ -39,15 +39,15 @@ This project started during a 6-month **SIWES** (Industrial Training) program as
 
 ---
 
-## ⚠️ Legal Disclaimer
-
-All machines and content in this repository are provided for **educational use only**. Do **not** attempt to exploit systems without explicit authorization. Use responsibly.
-
----
-
 ## Contributors
 
 Tcyph3r: [Linkedin](https://www.linkedin.com/in/boluwatife-opeyemi) : [GitHub](https://github.com/tcyph3r)
+
+---
+
+## ⚠️ Legal Disclaimer
+
+All machines and content in this repository are provided for **educational use only**. Do **not** attempt to exploit systems without explicit authorization. Use responsibly.
 
 ---
 
