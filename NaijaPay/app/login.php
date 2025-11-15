@@ -2,9 +2,6 @@
 session_start();
 $message = '';
 
-// Dev Note (Bayo): Remember to test login with user 'test@naijapay.ng' / 'password123'
-// Wait, did I clean up that account?
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require 'db_connect.php';
     
