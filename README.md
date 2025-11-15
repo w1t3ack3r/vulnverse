@@ -8,7 +8,6 @@ Welcome to **Vulnverse**, a curated collection of custom-built vulnerable virtua
 
 Each machine in Vulnverse is:
 
-* Packaged as a downloadable `.ova` VirtualBox image
 * Centered around vulnerable **web applications**
 * Focused on core vulnerability
 
@@ -19,19 +18,8 @@ Each machine in Vulnverse is:
 | Machine            | Difficulty              |
 | ------------------ | ----------------------- |
 | [MediLabs NG](https://github.com/w1t3ack3r/vulnverse/tree/main/MediLabs-NG)        | Beginner – Intermediate |
+| [NaijaPay](https://github.com/w1t3ack3r/vulnverse/tree/main/NaijaPay) | Intermediate |
 | *More Coming Soon* | —                       |
-
----
-
-## 🚀 Getting Started
-
-1. **Pick a Machine Folder:**
-   Open the `README.md` for installation guidance.
-
-2. **Import the `.ova` into VirtualBox**
-
-3. **Hack Away!**
-   Use the `walkthrough.md` for hints or solutions (spoiler alert!).
 
 ---
 
@@ -47,7 +35,7 @@ Each machine in Vulnverse is:
 ## 👨‍💻 About This Project
 
 **Vulnverse** is built and maintained by **[w1t3ack3r](https://github.com/w1t3ack3r)**, a cybersecurity student and penetration tester 🇳🇬.
-This project was developed during a 6-month **SIWES** (Industrial Training) program as a personal initiative to improve practical skills and contribute to the cybersecurity learning community.
+This project started during a 6-month **SIWES** (Industrial Training) program as a personal initiative to improve practical skills and contribute to the cybersecurity learning community.
 
 ---
 
