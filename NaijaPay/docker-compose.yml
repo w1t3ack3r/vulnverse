@@ -1,0 +1,51 @@
+services:
+  db:
+    image: mysql:5.7
+    container_name: naijapay_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: naijapay_db
+      MYSQL_USER: naijapay_user
+      MYSQL_PASSWORD: naija_p@ss!
+      MYSQL_ROOT_PASSWORD: rootpass
+    command: --default-authentication-plugin=mysql_native_password --sql-mode=""
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - naijapay_net
+
+  web:
+    build: .
+    container_name: naijapay_web
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    hostname: ctf.naijapay.ng
+    ports:
+      - "9000:80"
+    volumes:
+      - ./app:/var/www/html:rw
+      - vendor_data:/var/www/html/vendor
+    environment:
+      DB_HOST: db
+      DB_NAME: naijapay_db
+      DB_USER: naijapay_user
+      DB_PASS: naija_p@ss!
+    networks:
+      - naijapay_net
+
+networks:
+  naijapay_net:
+    driver: bridge
+
+volumes:
+  db_data:
+  vendor_data:
